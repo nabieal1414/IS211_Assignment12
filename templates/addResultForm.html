@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Quiz Result{% endblock %}
+
+{% block content %} 
+<fieldset class="border p-4">
+    <div id="result-form-error" class="text-danger"></div>
+    <legend class="float-none w-auto px-3">Add Quiz Result</legend>
+    <form action="/result/add" method="POST">
+        <div class="form-group">
+            <label for="student" class="form-label">Student</label>
+            <select name="student" id="student" class="form-control">
+                <option value="">------Student------</option>
+                {% for student in students %}
+                <option value="{{student[0]}}">{{student[1]}} {{student[2]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <select name="subject" id="subject" class="form-control">
+                <option value="">------Quiz------</option>
+                {% for quiz in quizzes %}
+                <option value="{{quiz[0]}}">{{quiz[1]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="grade" class="form-label">Grade</label>
+            <input type="number" id="grade" name="grade" placeholder="Grade" class="form-control"  />
+        </div>
+        <button type="submit" class="btn btn-primary">Add Result</button>
+    </form>
+</fieldset>
+<script>
+    const errorElement = document.getElementById('result-form-error')
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    errorElement.innerHTML = error
+
+</script>
+{% endblock %}

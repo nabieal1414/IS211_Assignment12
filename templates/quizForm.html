@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Quiz{% endblock %}
+
+{% block content %} 
+<fieldset class="border p-4">
+    <div id="quiz-form-error" class="text-danger"></div>
+    <legend class="float-none w-auto px-3">Add Quiz</legend>
+    <form action="/quiz/add" method="POST">
+        <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Subject" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="questionCount" class="form-label">Questions</label>
+            <input type="number" name="questionCount" id="questionCount" placeholder="Number of questions" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" name="date" id="date" placeholder="Date" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Quiz</button>
+    </form>
+</fieldset>
+<script>
+    const errorElement = document.getElementById('quiz-form-error')
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    errorElement.innerHTML = error
+</script>
+{% endblock %}

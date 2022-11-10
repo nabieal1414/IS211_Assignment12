@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %} 
+<fieldset class="border p-4">
+    <div class="text-danger" id="login-error"></div>
+    <legend class="float-none w-auto px-3">Login</legend>
+    <form action="verify" method="POST">
+        <div class="form-group">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" id="username" placeholder="Username" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</fieldset>
+<script>
+    const errorElement = document.getElementById('login-error')
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    errorElement.innerHTML = error
+</script>
+{% endblock %}

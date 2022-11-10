@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}Student Info{% endblock %}
+{% block content %} 
+<div class="row">
+<div class="col-12">
+  <div class="row align-items-center justify-content-between">
+      <div class="col-8"><h2>Students</h2></div>
+      <div class="col-2">
+        <a class="btn btn-info" href="/student/add">Add Student</a>
+      </div>  
+      <div class="col-2">
+        <a class="btn btn-dark" href="/result/add">Add Quiz Result</a>
+      </div>  
+    </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <td>{{student[0]}}</td>
+            <td>{{student[1]}}</td>
+            <td>{{student[2]}}</td>
+            <td><a href="/student/{{student[0]}}">Quiz</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-10"><h2>Quizzes</h2></div>
+        <div class="col-2">
+          <a class="btn btn-info" href="/quiz/add">Add Quiz</a>
+        </div>  
+      </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Subject</th>
+            <th>Number of Questions</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for quiz in quizzes %}
+          <tr>
+            <td>{{quiz[0]}}</td>
+            <td>{{quiz[1]}}</td>
+            <td>{{quiz[2]}}</td>
+            <td>{{quiz[3]}}</td>
+            
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+{% endblock %}

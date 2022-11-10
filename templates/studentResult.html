@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Student Info{% endblock %}
+
+{% block content %} 
+<div class="row">
+<div class="col-12">
+      <div class="col"><h1>Student Scores</h1></div>  
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Quiz Id</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        {% if studentResults|length == 0 %}
+            <tr>
+                <td colspan="2" class="text-center text-danger">No Results</td> 
+            </tr>
+        {% else %}
+        <tbody>
+          {% for result in studentResults %}
+          <tr>
+            <td>{{result[1]}}</td>
+            <td>{{result[2]}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>    
+    {% endif %}
+      </table>
+    </div>
+</div>
+{% endblock %}
